@@ -1,0 +1,43 @@
+
+.card{
+    border: 1px solid #e5e4e4;
+    padding: 20px;
+    width: 210px;
+    height: 260px;
+    border-radius: 40px;
+    margin: 20px;
+    transition: box-shadow 0.4s ease-in-out, transform box-shadow 0.2s ease-in-out;
+
+    
+  &:hover{
+    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-5px );
+  }
+  .cartImgs{
+    
+    width: 133px;
+    height: 112px;
+  }
+  .plus{
+    cursor: pointer;
+  }
+  .fav{
+    position: absolute;
+    cursor: pointer;
+  }
+
+  span{
+    font-size: 13px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+  
+  b{
+    font-size: 14px;
+  }
+
+  p{
+    font-weight: 400;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,281 @@
+body {
+  margin: 0;
+  font-family: "Inter";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #4682b4;
+}
+
+* {
+  font-family: "Inter";
+}
+
+.wrapper {
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+
+  max-width: 1080px;
+  margin: 50px auto;
+
+  .closeDrawer {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+header {
+  padding: 40px;
+
+  img {
+    margin-right: 15px;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+.main {
+  border-top: 1px solid #eaeaea;
+
+  .title {
+    color: #323232;
+  }
+}
+
+.content {
+  h1 {
+    margin: 0;
+  }
+}
+
+.cardBlock {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button {
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.searchBlock {
+  border: 1px solid #e5e4e4;
+  border-radius: 10px;
+  padding: 0 15px;
+  position: relative;
+
+  .clear {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    top: 13px;
+    right: 10px;
+    opacity: 0.5;
+  }
+
+  input {
+    border: 0;
+    padding: 13px;
+    font-size: 16px;
+    width: 200px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 420px;
+  height: 100%;
+  right: 0;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+
+  .cartItems {
+    flex: 1;
+    overflow: auto;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+  .fn{
+    display: none;
+  }
+}
+
+.totalBlock {
+  ul {
+    display: block;
+    margin-bottom: 40px !important;
+
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      div {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+  }
+
+  .greenButton {
+    position: relative;
+
+    &:disabled{
+      animation: button-loading 0.7s ease-in-out infinite;
+    }
+    img {
+      position: absolute;
+      right: 40px;
+      top: 22px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.cartItem {
+  overflow: hidden;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+
+  .cartItemImg {
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-position: 0 10px;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  b {
+    font-size: 14px;
+  }
+
+  .removebtn {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.cartEmpty {
+  text-align: center;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+
+  .greenButton {
+    width: 100%;
+    margin-top: 20px;
+
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 15px;
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+}
+
+.greenButton {
+  width: 100%;
+  height: 55px;
+
+  background: #9dd558;
+  border-radius: 18px;
+
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s ease-in-out;
+
+  &:disabled{
+    background-color: #bebebe;
+    cursor: default;
+  }
+  &:hover {
+    background: lighten($color: #9dd558, $amount: 10%);
+  }
+
+  &:active {
+    background: darken($color: #9dd558, $amount: 10%);
+  }
+}
+
+.items {
+  flex: 1;
+  overflow: auto;
+}
+
+@keyframes button-loading {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.7;
+  }
+  100%{
+    opacity: 1;
+  }
+}
