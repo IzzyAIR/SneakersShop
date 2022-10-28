@@ -100,9 +100,9 @@ axios.get("https://62ea677b3a5f1572e87aba1a.mockapi.io/sneakers")
 		>
 			{/* onCartClose={() => setCartOpened((cartOpened) => !cartOpened)} */}
 			<div className='wrapper clear'>
-				{cartOpened && <Drawer />}
 				{/* onCart={() => setCartOpened((cartOpened) => !cartOpened)} */}
 				<Header />
+				{cartOpened && <Drawer />}
 				<Routes>
 					<Route path='/' exact element={<Home />} />
 					<Route path='/favorite' element={<Favorites />} />

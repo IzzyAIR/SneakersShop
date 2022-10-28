@@ -6,8 +6,13 @@ import axios from 'axios';
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ onCartClose }) {
-	const { cardItems, onRemoveCard, setCardItems, setCartOpened, cartOpened } =
-		React.useContext(AppContext);
+	const {
+		cardItems,
+		onRemoveCard,
+		setCardItems,
+		setCartOpened,
+		cartOpened = false,
+	} = React.useContext(AppContext);
 	const [isCompleted, setIsCompleted] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 
@@ -41,15 +46,22 @@ function Drawer({ onCartClose }) {
 	const overlayRef = React.useRef();
 	const drawerRef = React.useRef();
 	React.useEffect(() => {
-		document.body.addEventListener('click', (event) => {
-			if (
-				event.path.includes(overlayRef.current) &&
-				!event.path.includes(drawerRef.current)
-			) {
-				console.log('drawer');
+		const clickOutside = (event) => {
+			if (!event.path.includes(overlayRef.current)) {
+				console.log('oveerlayRef');
+				setCartOpened(true);
+			} else if (!event.path.includes(drawerRef.current)) {
+				console.log('drawerRef');
 				setCartOpened(false);
 			}
-		});
+			console.log('outside');
+		};
+
+		document.body.addEventListener('click', clickOutside);
+
+		return () => {
+			document.body.removeEventListener('click', clickOutside);
+		};
 	}, []);
 
 	return (
