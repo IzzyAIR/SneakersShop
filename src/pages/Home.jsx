@@ -19,21 +19,23 @@ function Home() {
 			item.title.toLowerCase().includes(searchVal.toLowerCase()),
 		);
 
-		return (isLoading ? [...new Array(10)].map((val) => (val = 1)) : filtered).map((item) => (
-			<Card
-				{...item}
-				isInCard={!!(cardItems || []).find((v) => v.id === item.id)}
-				key={item.id}
-				item={item}
-				loading={isLoading}
-				onPlus={(obj) => {
-					onAddToCart(obj);
-				}}
-				onFav={(obj) => {
-					onAddToFavorite(obj);
-				}}
-			/>
-		));
+		return (isLoading ? [...new Array(10)].map((val) => (val = 1)) : filtered).map(
+			(item, i) => (
+				<Card
+					{...item}
+					isInCard={!!(cardItems || []).find((v) => v.id === item.id)}
+					key={i}
+					item={item}
+					loading={isLoading}
+					onPlus={(obj) => {
+						onAddToCart(obj);
+					}}
+					onFav={(obj) => {
+						onAddToFavorite(obj);
+					}}
+				/>
+			),
+		);
 	};
 	return (
 		<div className='main content p-40'>

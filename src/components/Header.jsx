@@ -3,7 +3,7 @@ import AppContext from '../context';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
-	const { cardItems = [] } = React.useContext(AppContext);
+	const { cardItems = [], setCartOpened, cartOpened } = React.useContext(AppContext);
 	const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0);
 
 	return (
@@ -19,7 +19,7 @@ function Header(props) {
 			</Link>
 
 			<ul className='headerRight d-flex align-center'>
-				<li className='mr-30 d-flex ' onClick={props.onCart}>
+				<li className='mr-30 d-flex ' onClick={() => setCartOpened(true)}>
 					<img className='cu-p mr-20' src='/React-Img/cart.svg' alt='Cart' />
 					<span className='opacity-7 cu-p'>
 						{new Intl.NumberFormat('ru-RU').format(totalPrice)} сум

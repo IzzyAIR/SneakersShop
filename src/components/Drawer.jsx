@@ -6,7 +6,8 @@ import axios from 'axios';
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ onCartClose }) {
-	const { cardItems, onRemoveCard, setCardItems, } = React.useContext(AppContext);
+	const { cardItems, onRemoveCard, setCardItems, setCartOpened, cartOpened } =
+		React.useContext(AppContext);
 	const [isCompleted, setIsCompleted] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 
@@ -37,13 +38,27 @@ function Drawer({ onCartClose }) {
 	};
 	const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0);
 
+	const overlayRef = React.useRef();
+	const drawerRef = React.useRef();
+	React.useEffect(() => {
+		document.body.addEventListener('click', (event) => {
+			if (
+				event.path.includes(overlayRef.current) &&
+				!event.path.includes(drawerRef.current)
+			) {
+				console.log('drawer');
+				setCartOpened(false);
+			}
+		});
+	}, []);
+
 	return (
-		<div className='overlay '>
-			<div className='drawer'>
+		<div ref={overlayRef} className='overlay'>
+			<div ref={drawerRef} className='drawer'>
 				<div className='d-flex mb-30 justify-between '>
 					<h2>Корзина </h2>
 					<img
-						onClick={onCartClose}
+						onClick={() => setCartOpened(!cartOpened)}
 						className='cu-p'
 						src='/React-img/btnRemove.svg'
 						alt='Remove Button'
